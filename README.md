@@ -6,19 +6,22 @@ El patrón Singleton es un patrón de diseño de software que se utiliza para ga
 array de datos de clientes, no nos interesaria que cada vez que creemos una instancia de este esté vacio.
 
 
-```js
-public class MiSingleton {
-    private static MiSingleton instancia = null;
-    private MiSingleton() {
-        // Inicialización de la instancia creandola como privada 
+```ts
+class MiSingleton {
+  private static instancia: MiSingleton | null = null;
+
+  private constructor() {
+    // Inicialización de la instancia creándola como privada
+  }
+
+  public static obtenerInstancia(): MiSingleton {
+    if (MiSingleton.instancia === null) {
+      MiSingleton.instancia = new MiSingleton(); // Creación perezosa
     }
-    public static MiSingleton obtenerInstancia() {
-        if (instancia == null) {
-            instancia = new MiSingleton(); // Creación perezosa
-        }
-        return instancia;
-    }
+    return MiSingleton.instancia;
+  }
 }
+
 ```
 
 El patrón Singleton se implementa siguiendo estos principios:
